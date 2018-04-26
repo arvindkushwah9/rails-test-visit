@@ -1,0 +1,25 @@
+h1 Visit.org Sample Project
+p
+  | Please complete the items on the checklist.
+  
+  span<> = link_to 'This is the CSV to use.', 'test.csv'
+
+h3 Checklist
+ol
+  li Create model to store CSV data
+  li Upload CSV via a form
+  li Save CSV records to database
+  li Display success/error message
+  li Display users in table
+
+h3 Upload data from CSV:
+= form_tag "/users", multipart: true, remote: true, id: "upload-form" do
+	= file_field_tag :file, required: true	
+	= submit_tag 'Upload', class: "load_button"
+	#generate-add-form
+    .ajax-loader
+    	span Uploding....
+
+h3 Uploaded data:
+#list-users
+  = render 'users/index', :users => @users
